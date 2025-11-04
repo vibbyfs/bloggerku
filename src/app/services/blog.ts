@@ -17,6 +17,6 @@ export async function getBlog() {
 }
 
 export async function getBlogById(id: string) {
-  const { data } = await axiosClient.get<BlogType[]>(`/pub/posts/${id}`);
+  const { data } = await axiosClient.get<BlogType>(`/pub/posts/${id}`);
   return data;
 }
