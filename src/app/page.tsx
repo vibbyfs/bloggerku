@@ -13,7 +13,6 @@ export default function Dashboard() {
       try {
         const data = await getBlog();
         setBlog(data);
-        console.log(data);
       } catch (err) {
         console.log("Error fetching data", err);
       }
