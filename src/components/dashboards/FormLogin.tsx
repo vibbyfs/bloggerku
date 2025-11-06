@@ -8,8 +8,8 @@ import { useRouter } from "next/navigation";
 
 export default function FormLogin() {
   const router = useRouter();
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("staf@mail.com");
+  const [password, setPassword] = useState<string>("password");
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
