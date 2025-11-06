@@ -1,7 +1,7 @@
 "use client";
 
 import BlogCard from "@/components/publics/BlogCard";
-import { BlogType, getBlog } from "./services/blog";
+import { BlogType, getPublicBlog } from "./services/blog";
 import { useEffect, useState } from "react";
 import Sidebar from "@/components/publics/Sidebar";
 
@@ -11,7 +11,7 @@ export default function Dashboard() {
   useEffect(() => {
     async function fetchBlog() {
       try {
-        const data = await getBlog();
+        const data = await getPublicBlog();
         setBlog(data);
       } catch (err) {
         console.log("Error fetching data", err);

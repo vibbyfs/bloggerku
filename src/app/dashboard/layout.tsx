@@ -1,4 +1,5 @@
 // src/app/dashboard/layout.tsx
+import SidebarDashboard from "@/components/dashboards/SidebarDashboard";
 import React from "react";
 
 export const metadata = {
@@ -10,14 +11,15 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // layout khusus untuk semua halaman di /dashboard/*
   return (
     <html>
       <body>
-        <main className="min-h-screen bg-gray-50">
-          {/* Tidak ada Navbar di sini */}
-          {children}
-        </main>
+        <div className="flex min-h-screen bg-gray-50">
+          <aside className="hidden sm:block w-64 bg-white">
+            <SidebarDashboard />
+          </aside>
+          <main className="flex-1 p-6 overflow-y-auto">{children}</main>
+        </div>
       </body>
     </html>
   );

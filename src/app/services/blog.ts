@@ -11,12 +11,17 @@ export type BlogType = {
   createdAt: string;
 };
 
-export async function getBlog() {
+export async function getPublicBlog() {
   const { data } = await axiosClient.get<BlogType[]>("/pub/posts");
   return data;
 }
 
 export async function getBlogById(id: string) {
   const { data } = await axiosClient.get<BlogType>(`/pub/posts/${id}`);
+  return data;
+}
+
+export async function getBlog() {
+  const { data } = await axiosClient.get("/posts");
   return data;
 }
