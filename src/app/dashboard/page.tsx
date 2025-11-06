@@ -24,9 +24,7 @@ export default function Dashboard() {
 
   return (
     <>
-      {blogs.map((blog) => (
-        <TableBlog key={blog.id} blog={blog} />
-      ))}
+      <TableBlog blogs={blogs} />
     </>
   );
 }
