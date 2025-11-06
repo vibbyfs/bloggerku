@@ -13,7 +13,7 @@ export default function TableBlog({ blogs }: Props) {
     <div className="relative bg-white rounded-md shadow-md max-h-[90vh] overflow-x-auto max-w-7xl mx-auto">
       <h1 className="text-2xl font-bold p-5">Blog Table</h1>
       <table className="min-w-full text-sm text-left text-gray-700 px-4">
-        <thead className="bg-gray-100 text-gray-700 uppercase text-xs sticky top-0 z-10">
+        <thead className="bg-black text-white uppercase text-xs sticky top-0 z-10">
           <tr>
             <th className="px-5 py-5 border-b">No</th>
             <th className="px-1 py-5 border-b w-[60px]">Image</th>
@@ -55,7 +55,7 @@ export default function TableBlog({ blogs }: Props) {
               <td className="px-2 py-2">{formatDate(blog.createdAt)}</td>
               <td className="px-2 py-2">
                 <div className="flex justify-center gap-1">
-                  <Link href={`/posts/edit`}>
+                  <Link href={`/dashboard/${blog.id}/edit-blog`}>
                     <button>
                       <FilePenLine size={17} />
                     </button>

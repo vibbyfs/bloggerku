@@ -16,12 +16,22 @@ export async function getPublicBlog() {
   return data;
 }
 
-export async function getBlogById(id: string) {
+export async function getPublicBlogById(id: string) {
   const { data } = await axiosClient.get<BlogType>(`/pub/posts/${id}`);
   return data;
 }
 
 export async function getBlog() {
   const { data } = await axiosClient.get("/posts");
+  return data;
+}
+
+export async function getBlogById(id: string) {
+  const { data } = await axiosClient.get(`/posts/${id}`);
+  return data;
+}
+
+export async function putBlog(id: string, payload: Partial<BlogType>) {
+  const { data } = await axiosClient.put(`/posts/${id}`, payload);
   return data;
 }

@@ -11,7 +11,7 @@ export default function SidebarDashboard() {
     <aside className="w-64 min-h-screen bg-black text-white p-6 hidden md:block fixed z-100">
       <h2 className="text-lg font-bold mb-6">My Dashboard</h2>
       <nav className="space-y-4">
-        <Link href="/posts">
+        <Link href="/dashboard">
           <div className="flex items-center space-x-2 hover:text-gray-300 mt-3">
             <StickyNoteIcon size={18} />
             <span>Posts</span>
