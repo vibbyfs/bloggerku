@@ -8,15 +8,15 @@ import { useRouter } from "next/navigation";
 
 export default function FormLogin() {
   const router = useRouter();
-  const [email, setEmail] = useState<string>("staf@mail.com");
-  const [password, setPassword] = useState<string>("password");
+  const [email, setEmail] = useState<string>("admin1@mail.com");
+  const [password, setPassword] = useState<string>("adminadmin");
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     try {
       const data = await loginUser({ email, password });
-      saveToken(data.accesToken);
-      setAuthToken(data.accesToken);
+      saveToken(data.accessToken);
+      setAuthToken(data.accessToken);
       router.push("/dashboard");
     } catch (err) {
       console.log("ERROR HANDLE SUBMIT LOGIN", err);

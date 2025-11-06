@@ -11,15 +11,21 @@ export type AuthUserType = {
 };
 
 export type LoginResponseType = {
-  accesToken: string;
+  accessToken: string;
   user: AuthUserType;
 };
 
 export async function loginUser(
   payload: LoginPayloadType
 ): Promise<LoginResponseType> {
-  const { data } = await axiosClient.post<LoginResponseType>("/login", payload);
-  return data;
+  const { data } = await axiosClient.post("/login", payload);
+
+  const token = data?.access_token;
+
+  return {
+    accessToken: token,
+    user: data?.user,
+  } as LoginResponseType;
 }
 
 const TOKEN_KEY = "access_token";

@@ -1,7 +1,12 @@
+import { BlogType } from "@/app/services/blog";
 import { FilePenLine, ImageUp, Trash2 } from "lucide-react";
 import Link from "next/link";
 
-export default function TableBlog() {
+type Props = {
+  blog: BlogType;
+};
+
+export default function TableBlog({ blog }: Props) {
   return (
     <div className="relative bg-white rounded-md shadow-md max-h-[80vh] overflow-x-auto max-w-7xl mx-auto">
       <h1 className="text-2xl font-bold p-5">Blog Table</h1>
@@ -21,7 +26,7 @@ export default function TableBlog() {
         </thead>
         <tbody>
           <tr className="border-b hover:bg-gray-50 transition-colors">
-            <td className="px-5 py-2"></td>
+            <td className="px-5 py-2">{blog.id}</td>
             <td className="px-2 py-2"></td>
             <td className="px-2 py-2 font-semibold"></td>
             <td className="px-2 py-1 max-w-[400px] line-clamp-2 text-justify text-sm"></td>

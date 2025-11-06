@@ -12,15 +12,11 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body>
-        <div className="flex min-h-screen bg-gray-50">
-          <aside className="hidden sm:block w-64 bg-white">
-            <SidebarDashboard />
-          </aside>
-          <main className="flex-1 p-6 overflow-y-auto">{children}</main>
-        </div>
-      </body>
-    </html>
+    <div className="flex min-h-screen bg-gray-50">
+      <aside className="hidden sm:block w-64 bg-white">
+        <SidebarDashboard />
+      </aside>
+      <main className="flex-1 p-6 overflow-y-auto">{children}</main>
+    </div>
   );
 }
