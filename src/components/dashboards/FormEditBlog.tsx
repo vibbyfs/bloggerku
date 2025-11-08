@@ -5,10 +5,12 @@ import Button from "../commons/Button";
 import { FormEvent, useEffect, useState } from "react";
 import { getBlogById, putBlog } from "@/app/services/blog";
 import { useParams, useRouter } from "next/navigation";
+import getCategories, { categoriesType } from "@/app/services/categories";
 
 export default function FormEditBlog() {
   const { id } = useParams();
   const router = useRouter();
+  const [categories, setCategories] = useState<categoriesType[]>();
   const [form, setForm] = useState({
     title: "",
     content: "",
@@ -46,7 +48,13 @@ export default function FormEditBlog() {
       });
     }
 
+    async function fetchCategories() {
+      const data = await getCategories();
+      setCategories(data);
+    }
+
     fetchBlogById();
+    fetchCategories();
   }, [id]);
 
   return (
@@ -99,13 +107,24 @@ export default function FormEditBlog() {
               Category
             </label>
 
-            <select className="w-full border border-gray-300 rounded-md px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-gray-200">
-              <option value="">All Categories</option>
-              <option></option>
+            <select
+              value={form.categoryId}
+              onChange={(e) => setForm({ ...form, categoryId: e.target.value })}
+              className="w-full border border-gray-300 rounded-md px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-gray-200"
+            >
+              <option value="" disabled>
+                All Categories
+              </option>
+              {categories?.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
             </select>
           </div>
           <Button label="Submit" type="submit" className="w-full" />
         </form>
+
         <div className="mt-3">
           <Link href="/dashboard">
             <Button label="Back" type="submit" className="w-full" />
