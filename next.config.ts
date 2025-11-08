@@ -15,7 +15,8 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-        pathname: "/my-app/**",
+        // Allow all paths under your Cloudinary cloud (dk0xixdob)
+        pathname: "/dk0xixdob/**",
       },
       {
         protocol: "https",

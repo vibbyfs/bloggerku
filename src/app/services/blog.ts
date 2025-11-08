@@ -40,3 +40,12 @@ export async function createBlog(payload: Partial<BlogType>) {
   const { data } = await axiosClient.post("/posts", payload);
   return data;
 }
+
+export async function uploadImage(id: string, file: File) {
+  const formData = new FormData();
+  formData.append("coverImage", file);
+
+  // Jangan set Content-Type manual agar boundary otomatis oleh browser/axios
+  const { data } = await axiosClient.patch(`/posts/${id}/cover-url`, formData);
+  return data;
+}

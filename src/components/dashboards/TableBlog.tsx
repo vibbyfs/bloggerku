@@ -50,6 +50,7 @@ export default function TableBlog({ blogs, categories }: Props) {
                         src={blog.imgUrl}
                         alt={blog.title}
                         fill
+                        sizes="(max-width: 640px) 96px, 96px"
                         className="object-cover rounded"
                       />
                     </div>
@@ -70,7 +71,7 @@ export default function TableBlog({ blogs, categories }: Props) {
                         <FilePenLine size={17} />
                       </button>
                     </Link>
-                    <Link href={`/posts/upload-image`}>
+                    <Link href={`/dashboard/upload-image/${blog.id}`}>
                       <button>
                         <ImageUp size={17} />
                       </button>
