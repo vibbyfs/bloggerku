@@ -1,6 +1,6 @@
 import { axiosClient } from "@/lib/axios";
 
-export type categoriesType = {
+export type CategoriesType = {
   id: string;
   name: string;
   createdAt: string;

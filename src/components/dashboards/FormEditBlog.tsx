@@ -5,12 +5,12 @@ import Button from "../commons/Button";
 import { FormEvent, useEffect, useState } from "react";
 import { getBlogById, putBlog } from "@/app/services/blog";
 import { useParams, useRouter } from "next/navigation";
-import getCategories, { categoriesType } from "@/app/services/categories";
+import getCategories, { CategoriesType } from "@/app/services/categories";
 
 export default function FormEditBlog() {
   const { id } = useParams();
   const router = useRouter();
-  const [categories, setCategories] = useState<categoriesType[]>();
+  const [categories, setCategories] = useState<CategoriesType[]>();
   const [form, setForm] = useState({
     title: "",
     content: "",
