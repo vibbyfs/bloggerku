@@ -3,6 +3,6 @@ import axios from "axios";
 export const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000",
   headers: {
-    "Content-Type": "Application/json",
+    "Content-Type": "application/json",
   },
 });

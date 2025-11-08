@@ -24,7 +24,7 @@ export default function BlogCard({ blog }: Props) {
             <p className="text-sm text-gray-600 px-1 py-1 max-w-[500px] text-justify line-clamp-2 overflow-hidden">
               {blog.content}
             </p>
-            <Link href={`blogs/${blog.id}`}>
+            <Link href={`/blogs/${blog.id}`}>
               <Button label="See Detail" />
             </Link>
           </div>

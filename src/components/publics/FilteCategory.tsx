@@ -6,7 +6,7 @@ export default function FilterCategory() {
       </h3>
 
       <select
-        value=""
+        defaultValue=""
         className="border rounded-full px-4 py-2 text-sm text-gray-800"
       >
         <option value="">All Categories</option>
