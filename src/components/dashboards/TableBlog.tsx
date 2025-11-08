@@ -4,6 +4,7 @@ import { FilePenLine, ImageUp, Trash2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { CategoriesType } from "@/app/services/categories";
+import Button from "../commons/Button";
 
 type Props = {
   blogs: BlogType[];
@@ -13,7 +14,12 @@ type Props = {
 export default function TableBlog({ blogs, categories }: Props) {
   return (
     <div className="relative bg-white rounded-md shadow-md max-h-[90vh] overflow-x-auto max-w-7xl mx-auto">
-      <h1 className="text-2xl font-bold p-5">Blog Table</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold p-5">Blog Table</h1>
+        <Link href="/dashboard/add-blog">
+          <Button label="New Blog" />
+        </Link>
+      </div>
       <table className="min-w-full text-sm text-left text-gray-700 px-4">
         <thead className="bg-black text-white uppercase text-xs sticky top-0 z-10">
           <tr>

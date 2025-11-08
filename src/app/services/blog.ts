@@ -35,3 +35,8 @@ export async function putBlog(id: string, payload: Partial<BlogType>) {
   const { data } = await axiosClient.put(`/posts/${id}`, payload);
   return data;
 }
+
+export async function createBlog(payload: Partial<BlogType>) {
+  const { data } = await axiosClient.post("/posts", payload);
+  return data;
+}
