@@ -2,11 +2,13 @@
 
 import TableBlog from "@/components/dashboards/TableBlog";
 import { useEffect, useState } from "react";
-import { BlogType, getBlog } from "../services/blog";
+import { BlogType, deleteBlog, getBlog } from "../services/blog";
 import { getSavedToken, setAuthToken } from "../services/auth";
 import getCategories, { CategoriesType } from "../services/categories";
+import { useParams } from "next/navigation";
 
 export default function Dashboard() {
+  const { id } = useParams();
   const [blogs, setBlog] = useState<BlogType[]>([]);
   const [categories, setCategories] = useState<CategoriesType[]>([]);
 
@@ -36,9 +38,25 @@ export default function Dashboard() {
     fetchCategories();
   }, []);
 
+  async function handleDeleteBlog(id: string) {
+    try {
+      await deleteBlog(id as string);
+
+      const remainingBlog = blogs.filter((blog) => blog.id !== id);
+
+      setBlog(remainingBlog);
+    } catch (err) {
+      console.log("ERROR HANDLE DELETE", err);
+    }
+  }
+
   return (
     <>
-      <TableBlog blogs={blogs} categories={categories} />
+      <TableBlog
+        blogs={blogs}
+        categories={categories}
+        onDelete={handleDeleteBlog}
+      />
     </>
   );
 }

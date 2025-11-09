@@ -9,9 +9,10 @@ import Button from "../commons/Button";
 type Props = {
   blogs: BlogType[];
   categories: CategoriesType[];
+  onDelete: (id: string) => void;
 };
 
-export default function TableBlog({ blogs, categories }: Props) {
+export default function TableBlog({ blogs, categories, onDelete }: Props) {
   return (
     <div className="relative bg-white rounded-md shadow-md max-h-[90vh] overflow-x-auto max-w-7xl mx-auto">
       <div className="flex justify-between items-center">
@@ -67,18 +68,18 @@ export default function TableBlog({ blogs, categories }: Props) {
                 <td className="px-2 py-2">
                   <div className="flex justify-center gap-1">
                     <Link href={`/dashboard/${blog.id}/edit-blog`}>
-                      <button>
+                      <Button>
                         <FilePenLine size={17} />
-                      </button>
+                      </Button>
                     </Link>
                     <Link href={`/dashboard/upload-image/${blog.id}`}>
-                      <button>
+                      <Button>
                         <ImageUp size={17} />
-                      </button>
+                      </Button>
                     </Link>
-                    <button>
+                    <Button onClick={() => onDelete(blog.id)}>
                       <Trash2 size={17} />
-                    </button>
+                    </Button>
                   </div>
                 </td>
               </tr>
