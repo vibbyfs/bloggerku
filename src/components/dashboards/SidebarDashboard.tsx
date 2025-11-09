@@ -18,7 +18,7 @@ export default function SidebarDashboard() {
           </div>
         </Link>
 
-        <Link href="/categories">
+        <Link href="/dashboard/categories">
           <div className="flex items-center space-x-2 hover:text-gray-300 mt-3">
             <AlbumIcon size={18} />
             <span>Categories</span>

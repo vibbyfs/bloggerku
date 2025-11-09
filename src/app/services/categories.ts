@@ -8,6 +8,6 @@ export type CategoriesType = {
 };
 
 export default async function getCategories() {
-  const { data } = await axiosClient.get("/categories");
+  const { data } = await axiosClient.get<CategoriesType[]>("/categories");
   return data;
 }

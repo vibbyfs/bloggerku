@@ -77,7 +77,10 @@ export default function TableBlog({ blogs, categories, onDelete }: Props) {
                         <ImageUp size={17} />
                       </Button>
                     </Link>
-                    <Button onClick={() => onDelete(blog.id)}>
+                    <Button
+                      onClick={() => onDelete(blog.id)}
+                      className="hover:bg-rose-600"
+                    >
                       <Trash2 size={17} />
                     </Button>
                   </div>
