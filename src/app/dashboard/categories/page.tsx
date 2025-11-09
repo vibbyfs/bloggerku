@@ -1,7 +1,7 @@
 "use client";
 
 import { getSavedToken, setAuthToken } from "@/app/services/auth";
-import getCategories, { CategoriesType } from "@/app/services/categories";
+import { CategoriesType, getCategories } from "@/app/services/categories";
 import TableCategories from "@/components/dashboards/TableCategories";
 import { useEffect, useState } from "react";
 

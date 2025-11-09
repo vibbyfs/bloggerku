@@ -7,7 +7,12 @@ export type CategoriesType = {
   updatedAt: string;
 };
 
-export default async function getCategories() {
+export async function getCategories() {
   const { data } = await axiosClient.get<CategoriesType[]>("/categories");
+  return data;
+}
+
+export async function createCategory(name: string) {
+  const { data } = await axiosClient.post(`/categories`, { name });
   return data;
 }

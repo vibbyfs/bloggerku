@@ -13,7 +13,7 @@ export default function TableCategories({ categories }: Props) {
     <div className="relative bg-white rounded-md shadow-md max-h-[90vh] overflow-x-auto max-w-7xl mx-auto">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold p-5">Blog Table</h1>
-        <Link href="/dashboard/add-blog">
+        <Link href="/dashboard/add-category">
           <Button label="New Categories" />
         </Link>
       </div>

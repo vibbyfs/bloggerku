@@ -1,7 +1,7 @@
 "use client";
 
 import { createBlog } from "@/app/services/blog";
-import getCategories, { CategoriesType } from "@/app/services/categories";
+import { getCategories, CategoriesType } from "@/app/services/categories";
 import Button from "@/components/commons/Button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

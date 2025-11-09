@@ -4,7 +4,7 @@ import TableBlog from "@/components/dashboards/TableBlog";
 import { useEffect, useState } from "react";
 import { BlogType, deleteBlog, getBlog } from "../services/blog";
 import { getSavedToken, setAuthToken } from "../services/auth";
-import getCategories, { CategoriesType } from "../services/categories";
+import { CategoriesType, getCategories } from "../services/categories";
 import { useParams } from "next/navigation";
 
 export default function Dashboard() {
