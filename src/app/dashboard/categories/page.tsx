@@ -1,11 +1,17 @@
 "use client";
 
 import { getSavedToken, setAuthToken } from "@/app/services/auth";
-import { CategoriesType, getCategories } from "@/app/services/categories";
+import {
+  CategoriesType,
+  deleteCategory,
+  getCategories,
+} from "@/app/services/categories";
 import TableCategories from "@/components/dashboards/TableCategories";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Categories() {
+  const router = useRouter();
   const [categories, setCategories] = useState<CategoriesType[]>([]);
 
   useEffect(() => {
@@ -23,5 +29,18 @@ export default function Categories() {
     fetchCatgories();
   }, []);
 
-  return <TableCategories categories={categories} />;
+  async function handleSubmit(id: number | string) {
+    try {
+      await deleteCategory(id);
+
+      const remainingCategory = categories.filter((c) => c.id !== id);
+      setCategories(remainingCategory);
+
+      router.push("/dashboard/categories");
+    } catch (err) {
+      console.log("ERROR HANDLE DELETE CATEGORY", err);
+    }
+  }
+
+  return <TableCategories categories={categories} onDelete={handleSubmit} />;
 }

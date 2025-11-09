@@ -6,9 +6,10 @@ import { formatDate } from "@/utils/formatDate";
 
 type Props = {
   categories: CategoriesType[];
+  onDelete: (id: number | string) => void;
 };
 
-export default function TableCategories({ categories }: Props) {
+export default function TableCategories({ categories, onDelete }: Props) {
   return (
     <div className="relative bg-white rounded-md shadow-md max-h-[90vh] overflow-x-auto max-w-7xl mx-auto">
       <div className="flex justify-between items-center">
@@ -46,7 +47,10 @@ export default function TableCategories({ categories }: Props) {
                       <FilePenLine size={17} />
                     </Button>
                   </Link>
-                  <Button className="hover:bg-rose-600">
+                  <Button
+                    className="hover:bg-rose-600"
+                    onClick={() => onDelete(c.id)}
+                  >
                     <Trash2 size={17} />
                   </Button>
                 </div>
