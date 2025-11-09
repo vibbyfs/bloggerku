@@ -1,9 +1,9 @@
 [
   {
     "id": "1",
-    "username": "admin1",
-    "email": "admin1@mail.com",
-    "password": "adminadmin",
+    "username": "admin",
+    "email": "admin@mail.com",
+    "password": "password",
     "role": "Admin",
     "phoneNumber": "081234567890",
     "address": "Jl. Mawar No. 10, Jakarta",
@@ -12,8 +12,8 @@
   },
   {
     "id": "2",
-    "username": "staff",
-    "email": "staff@mail.com",
+    "username": "staff1",
+    "email": "staff1@mail.com",
     "password": "password",
     "role": "Staff",
     "phoneNumber": "081333445566",
@@ -23,9 +23,9 @@
   },
   {
     "id": "3",
-    "username": "admin3",
-    "email": "admin3@mail.com",
-    "password": "adminadmin",
+    "username": "staff2",
+    "email": "satff2@mail.com",
+    "password": "password",
     "role": "Staff",
     "phoneNumber": "081133445566",
     "address": "Jl. Kembang No.100, Bali",
