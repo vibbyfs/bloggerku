@@ -42,11 +42,6 @@ export default function TableCategories({ categories, onDelete }: Props) {
               <td className="px-2 py-2">{formatDate(c.updatedAt)}</td>
               <td className="px-2 py-2">
                 <div className="flex justify-center gap-1">
-                  <Link href={`/dashboard/edit-blog`}>
-                    <Button>
-                      <FilePenLine size={17} />
-                    </Button>
-                  </Link>
                   <Button
                     className="hover:bg-rose-600"
                     onClick={() => onDelete(c.id)}

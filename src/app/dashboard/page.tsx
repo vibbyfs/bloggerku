@@ -38,7 +38,7 @@ export default function Dashboard() {
     fetchCategories();
   }, []);
 
-  async function handleDeleteBlog(id: string) {
+  async function handleDeleteBlog(id: string | number) {
     try {
       await deleteBlog(id as string);
 

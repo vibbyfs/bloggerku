@@ -9,7 +9,7 @@ import Button from "../commons/Button";
 type Props = {
   blogs: BlogType[];
   categories: CategoriesType[];
-  onDelete: (id: string) => void;
+  onDelete: (id: string | number) => void;
 };
 
 export default function TableBlog({ blogs, categories, onDelete }: Props) {
@@ -37,7 +37,9 @@ export default function TableBlog({ blogs, categories, onDelete }: Props) {
         </thead>
         <tbody>
           {blogs.map((blog, i) => {
-            const category = categories.find((c) => c.id === blog.categoryId);
+            const category = categories.find(
+              (c) => c.id === Number(blog.categoryId)
+            );
             return (
               <tr
                 key={blog.id}

@@ -25,10 +25,10 @@ export default function SidebarDashboard() {
           </div>
         </Link>
 
-        <Link href="/add-user">
+        <Link href="/dashboard/add-user">
           <div className="flex items-center space-x-2 hover:text-gray-300 mt-3">
             <Users size={18} />
-            <span>Add Staff</span>
+            <span>Add User</span>
           </div>
         </Link>
 

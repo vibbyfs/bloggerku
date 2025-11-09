@@ -5,7 +5,7 @@ import Button from "../commons/Button";
 import { FormEvent, useEffect, useState } from "react";
 import { getBlogById, putBlog } from "@/app/services/blog";
 import { useParams, useRouter } from "next/navigation";
-import getCategories, { CategoriesType } from "@/app/services/categories";
+import { CategoriesType, getCategories } from "@/app/services/categories";
 
 export default function FormEditBlog() {
   const { id } = useParams();
