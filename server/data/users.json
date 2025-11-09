@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "username": "admin1",
+    "email": "admin1@mail.com",
+    "password": "adminadmin",
+    "role": "Admin",
+    "phoneNumber": "081234567890",
+    "address": "Jl. Mawar No. 10, Jakarta",
+    "createdAt": "2025-01-10T10:00:00Z",
+    "updatedAt": "2025-01-10T10:00:00Z"
+  },
+  {
+    "id": "2",
+    "username": "staff",
+    "email": "staff@mail.com",
+    "password": "password",
+    "role": "Staff",
+    "phoneNumber": "081333445566",
+    "address": "Jl. Melati No.100, Surabaya",
+    "createdAt": "2025-01-10T10:00:00Z",
+    "updatedAt": "2025-01-10T10:00:00Z"
+  },
+  {
+    "id": "3",
+    "username": "admin3",
+    "email": "admin3@mail.com",
+    "password": "adminadmin",
+    "role": "Staff",
+    "phoneNumber": "081133445566",
+    "address": "Jl. Kembang No.100, Bali",
+    "createdAt": "2025-01-10T10:00:00Z",
+    "updatedAt": "2025-01-10T10:00:00Z"
+  }
+]
