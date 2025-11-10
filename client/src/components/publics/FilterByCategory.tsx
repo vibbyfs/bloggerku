@@ -25,7 +25,7 @@ export default function FilterByCategory({
               selectedId === null
                 ? "bg-gray-900 text-white"
                 : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-            } px-3 py-1 rounded-full`}
+            } px-3 py-1 rounded-full cursor-pointer`}
           >
             All
           </button>
@@ -40,7 +40,7 @@ export default function FilterByCategory({
                   isActive
                     ? "bg-gray-900 text-white"
                     : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                } px-3 py-1 rounded-full`}
+                } px-3 py-1 rounded-full cursor-pointer`}
               >
                 {c.name}
               </button>

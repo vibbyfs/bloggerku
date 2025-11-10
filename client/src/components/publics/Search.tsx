@@ -34,7 +34,7 @@ export default function SearchInput({
       <button
         type="button"
         onClick={handleReset}
-        className="text-xs px-2 py-1 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 cursor-pointer"
+        className="text-xs px-2 py-1 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-900 hover:text-white cursor-pointer"
       >
         Reset
       </button>
