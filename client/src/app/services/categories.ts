@@ -7,6 +7,11 @@ export type CategoriesType = {
   updatedAt: string;
 };
 
+export async function getPublicCategories() {
+  const { data } = await axiosClient.get<CategoriesType[]>("/pub/categories");
+  return data;
+}
+
 export async function getCategories() {
   const { data } = await axiosClient.get<CategoriesType[]>("/categories");
   return data;

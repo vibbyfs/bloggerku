@@ -11,8 +11,12 @@ export type BlogType = {
   createdAt: string;
 };
 
-export async function getPublicBlog() {
-  const { data } = await axiosClient.get<BlogType[]>("/pub/posts");
+export async function getPublicBlog(search?: string) {
+  const url =
+    search && search.trim() !== ""
+      ? `/pub/posts?search=${encodeURIComponent(search)}`
+      : "/pub/posts";
+  const { data } = await axiosClient.get<BlogType[]>(url);
   return data;
 }
 
