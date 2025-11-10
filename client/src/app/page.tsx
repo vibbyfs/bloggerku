@@ -2,6 +2,7 @@
 
 import BlogCard from "@/components/publics/BlogCard";
 import { BlogType, getPublicBlog } from "./services/blog";
+import PublicGuard from "@/components/commons/PublicGuard";
 import { useEffect, useState } from "react";
 import SearchInput from "@/components/publics/Search";
 import { CategoriesType, getPublicCategories } from "./services/categories";
@@ -33,6 +34,7 @@ export default function Dashboard() {
         setLoadingBlogs(false);
       }
     }
+    // Redirect dipindah ke PublicGuard untuk cegah flash
 
     async function fetchCategory() {
       try {
@@ -71,7 +73,7 @@ export default function Dashboard() {
   }
 
   return (
-    <>
+    <PublicGuard>
       <div className="max-w-4xl mx-auto p-4 flex flex-col-reverse sm:flex-row gap-6">
         <div className="w-full sm:flex-1 min-w-0">
           {loadingBlogs && (
@@ -134,6 +136,6 @@ export default function Dashboard() {
         disablePrev={page === 1 || loadingBlogs}
         disableNext={loadingBlogs || blogs.length < 10}
       />
-    </>
+    </PublicGuard>
   );
 }
