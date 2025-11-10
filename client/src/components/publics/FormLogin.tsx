@@ -55,13 +55,16 @@ export default function FormLogin() {
           <Button label="Login" type="submit" className="w-full" />
         </div>
 
-        <Link href="/">
-          <div className="flex justify-center mt-5">
-            <p className="text-gray-500 hover:text-gray-600 pt-5 text-sm">
-              No Account yet? Feel free to explore our blog section.
-            </p>
-          </div>
-        </Link>
+        <div className="flex justify-center mt-5">
+          <p className="text-gray-500 hover:text-gray-600 pt-5 text-sm">
+            No Account yet?{" "}
+            <Link href="/">
+              <span className="hover:text-blue-400">
+                Feel free to explore our blog section.
+              </span>
+            </Link>
+          </p>
+        </div>
       </form>
     </>
   );

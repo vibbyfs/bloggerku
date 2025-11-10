@@ -3,46 +3,81 @@
 import { logout } from "@/app/services/auth";
 import { AlbumIcon, LogOut, StickyNoteIcon, Users } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
-export default function SidebarDashboard() {
+type Props = {
+  onNavigate?: () => void;
+};
+
+export default function SidebarDashboard({ onNavigate }: Props) {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === "/dashboard") return pathname === "/dashboard";
+    return pathname?.startsWith(href);
+  };
+
+  const baseItem =
+    "flex items-center gap-3 mt-1 rounded px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-150";
+
   return (
-    <aside className="w-64 min-h-screen bg-black text-white p-6 hidden md:block fixed z-100">
-      <h2 className="text-lg font-bold mb-6">My Dashboard</h2>
-      <nav className="space-y-4">
-        <Link href="/dashboard">
-          <div className="flex items-center space-x-2 hover:text-gray-300 mt-3">
-            <StickyNoteIcon size={18} />
+    <div className="w-64 text-white h-full flex flex-col">
+      <h2 className="text-lg font-semibold py-4 px-3">My Dashboard</h2>
+      <div className="mb-4 px-3 h-px bg-white/10" />
+      <nav className="flex-1 space-y-1 px-1">
+        <Link href="/dashboard" onClick={onNavigate}>
+          <div
+            className={`${baseItem} ${
+              isActive("/dashboard") ? "bg-white/10" : "hover:bg-white/10"
+            }`}
+          >
+            <StickyNoteIcon size={18} className="opacity-80" />
             <span>Posts</span>
           </div>
         </Link>
 
-        <Link href="/dashboard/categories">
-          <div className="flex items-center space-x-2 hover:text-gray-300 mt-3">
-            <AlbumIcon size={18} />
+        <Link href="/dashboard/categories" onClick={onNavigate}>
+          <div
+            className={`${baseItem} ${
+              isActive("/dashboard/categories")
+                ? "bg-white/10"
+                : "hover:bg-white/10"
+            }`}
+          >
+            <AlbumIcon size={18} className="opacity-80" />
             <span>Categories</span>
           </div>
         </Link>
 
-        <Link href="/dashboard/add-user">
-          <div className="flex items-center space-x-2 hover:text-gray-300 mt-3">
-            <Users size={18} />
+        <Link href="/dashboard/add-user" onClick={onNavigate}>
+          <div
+            className={`${baseItem} ${
+              isActive("/dashboard/add-user")
+                ? "bg-white/10"
+                : "hover:bg-white/10"
+            }`}
+          >
+            <Users size={18} className="opacity-80" />
             <span>Add User</span>
           </div>
         </Link>
 
-        <div
-          className="flex items-center space-x-2 hover:text-gray-300 mt-3 cursor-pointer"
+        <button
+          className={`${baseItem} w-full text-left hover:bg-white/10`}
           onClick={() => {
             logout();
+            if (onNavigate) onNavigate();
             router.push("/login");
           }}
         >
-          <LogOut size={18} />
+          <LogOut size={18} className="opacity-80" />
           <span>Logout</span>
-        </div>
+        </button>
       </nav>
-    </aside>
+      <div className="mt-auto p-3 text-[11px] text-white/40">
+        © 2025 Bloggerku
+      </div>
+    </div>
   );
 }
