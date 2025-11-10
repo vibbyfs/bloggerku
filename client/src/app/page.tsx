@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import SearchInput from "@/components/publics/Search";
 import { CategoriesType, getPublicCategories } from "./services/categories";
 import FilterByCategory from "@/components/publics/FilterByCategory";
+import Pagination from "@/components/publics/Pagination";
 
 export default function Dashboard() {
   const [blogs, setBlog] = useState<BlogType[]>([]);
@@ -14,6 +15,7 @@ export default function Dashboard() {
   const [loadingBlogs, setLoadingBlogs] = useState<boolean>(true);
   const [loadingCategories, setLoadingCategories] = useState<boolean>(true);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     async function fetchBlog() {
@@ -21,7 +23,8 @@ export default function Dashboard() {
         setLoadingBlogs(true);
         const data = await getPublicBlog(
           searchTerm,
-          selectedCategory ?? undefined
+          selectedCategory ?? undefined,
+          page
         );
         setBlog(data);
       } catch (err) {
@@ -45,10 +48,26 @@ export default function Dashboard() {
 
     fetchCategory();
     fetchBlog();
-  }, [searchTerm, selectedCategory]);
+  }, [searchTerm, selectedCategory, page]);
 
   function handleSearch(term: string) {
     setSearchTerm(term);
+    setPage(1); // reset ke halaman awal saat ada pencarian baru
+  }
+
+  function handleSelectCategory(id: number | null) {
+    setSelectedCategory(id);
+    setPage(1); // reset halaman ketika ganti kategori
+  }
+
+  function handlePrevPage() {
+    setPage((p) => Math.max(1, p - 1));
+  }
+  function handleNextPage() {
+    // tanpa total count, kita hanya akan lanjut jika data penuh (10)
+    if (blogs.length === 10) {
+      setPage((p) => p + 1);
+    }
   }
 
   return (
@@ -101,12 +120,20 @@ export default function Dashboard() {
               <FilterByCategory
                 categories={categories}
                 selectedId={selectedCategory}
-                onSelect={(id) => setSelectedCategory(id)}
+                onSelect={handleSelectCategory}
               />
             </>
           )}
         </div>
       </div>
+      {/* Pagination Controls */}
+      <Pagination
+        page={page}
+        onPrev={handlePrevPage}
+        onNext={handleNextPage}
+        disablePrev={page === 1 || loadingBlogs}
+        disableNext={loadingBlogs || blogs.length < 10}
+      />
     </>
   );
 }

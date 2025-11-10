@@ -12,12 +12,17 @@ export type BlogType = {
 };
 
 // Tambah dukungan filter categoryId via query `filter`
-export async function getPublicBlog(search?: string, filter?: number | string) {
+export async function getPublicBlog(
+  search?: string,
+  filter?: number | string,
+  page?: number
+) {
   const params = new URLSearchParams();
   if (search && search.trim() !== "") params.set("search", search.trim());
   if (filter !== undefined && filter !== null && String(filter).trim() !== "") {
     params.set("filter", String(filter));
   }
+  if (page && page > 1) params.set("page", String(page));
   const url = params.toString()
     ? `/pub/posts?${params.toString()}`
     : "/pub/posts";
