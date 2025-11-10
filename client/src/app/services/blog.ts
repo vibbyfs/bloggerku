@@ -11,11 +11,16 @@ export type BlogType = {
   createdAt: string;
 };
 
-export async function getPublicBlog(search?: string) {
-  const url =
-    search && search.trim() !== ""
-      ? `/pub/posts?search=${encodeURIComponent(search)}`
-      : "/pub/posts";
+// Tambah dukungan filter categoryId via query `filter`
+export async function getPublicBlog(search?: string, filter?: number | string) {
+  const params = new URLSearchParams();
+  if (search && search.trim() !== "") params.set("search", search.trim());
+  if (filter !== undefined && filter !== null && String(filter).trim() !== "") {
+    params.set("filter", String(filter));
+  }
+  const url = params.toString()
+    ? `/pub/posts?${params.toString()}`
+    : "/pub/posts";
   const { data } = await axiosClient.get<BlogType[]>(url);
   return data;
 }

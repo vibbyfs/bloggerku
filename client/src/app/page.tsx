@@ -13,12 +13,16 @@ export default function Dashboard() {
   const [categories, setCategories] = useState<CategoriesType[]>([]);
   const [loadingBlogs, setLoadingBlogs] = useState<boolean>(true);
   const [loadingCategories, setLoadingCategories] = useState<boolean>(true);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
   useEffect(() => {
     async function fetchBlog() {
       try {
         setLoadingBlogs(true);
-        const data = await getPublicBlog(searchTerm);
+        const data = await getPublicBlog(
+          searchTerm,
+          selectedCategory ?? undefined
+        );
         setBlog(data);
       } catch (err) {
         console.log("Error fetching data", err);
@@ -41,7 +45,7 @@ export default function Dashboard() {
 
     fetchCategory();
     fetchBlog();
-  }, [searchTerm]);
+  }, [searchTerm, selectedCategory]);
 
   function handleSearch(term: string) {
     setSearchTerm(term);
@@ -94,7 +98,11 @@ export default function Dashboard() {
           ) : (
             <>
               <SearchInput onSearch={handleSearch} />
-              <FilterByCategory />
+              <FilterByCategory
+                categories={categories}
+                selectedId={selectedCategory}
+                onSelect={(id) => setSelectedCategory(id)}
+              />
             </>
           )}
         </div>
