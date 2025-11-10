@@ -12,9 +12,12 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 gap-4">
           <nav className="mr-2">
-            <Link href="/" className="text-sm text-gray-600 hover:text-black">
+            <Link
+              href="/"
+              className="text-md font-bold text-gray-600 hover:text-black"
+            >
               Blog
             </Link>
           </nav>
@@ -23,7 +26,7 @@ export default function Navbar() {
             href="/login"
             className="flex items-center text-sm text-gray-700 hover:text-black"
           >
-            <CircleUser className="w-10 h-10" />
+            <CircleUser className="w-8 h-8" />
           </Link>
         </div>
       </div>
