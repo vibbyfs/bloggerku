@@ -3,7 +3,7 @@
     "username": "postgres",
     "password": "postgres",
     "database": "BLOGGERKU",
-    "host": "127.0.0.1",
+    "host": "postgres",
     "dialect": "postgres",
     "logging": false
   },
@@ -16,6 +16,11 @@
     "logging": false
   },
   "production": {
-    "use_env_variable": "DATABASE_URL"
+    "username": "postgres",
+    "password": "postgres",
+    "database": "BLOGGERKU",
+    "host": "postgres",
+    "dialect": "postgres",
+    "logging": false
   }
 }
