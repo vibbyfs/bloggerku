@@ -5,6 +5,7 @@ import Button from "@/components/commons/Button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
+import { showError, showSuccess } from "@/lib/toast";
 
 export default function AddCategory() {
   const router = useRouter();
@@ -14,11 +15,12 @@ export default function AddCategory() {
     e.preventDefault();
     try {
       await createCategory(name);
+      showSuccess("Category created successfully!");
 
       setName("");
       router.push("/dashboard/categories");
     } catch (err) {
-      console.log("ERROR HANDLE SUBMIT ADD CATEGORY", err);
+      showError(err);
     }
   }
 

@@ -6,6 +6,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { getBlogById, putBlog } from "@/app/services/blog";
 import { useParams, useRouter } from "next/navigation";
 import { CategoriesType, getCategories } from "@/app/services/categories";
+import { showError, showSuccess } from "@/lib/toast";
 
 export default function FormEditBlog() {
   const { id } = useParams();
@@ -22,6 +23,7 @@ export default function FormEditBlog() {
     e.preventDefault();
     try {
       await putBlog(id as string, form);
+      showSuccess("Blog updated successfully!");
 
       setForm({
         title: "",
@@ -32,7 +34,7 @@ export default function FormEditBlog() {
 
       router.push("/dashboard");
     } catch (err) {
-      console.log("ERROR HANDLE SUBMIT EDIT BLOG", err);
+      showError(err);
     }
   }
 

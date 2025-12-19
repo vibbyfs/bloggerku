@@ -6,6 +6,7 @@ import Button from "@/components/commons/Button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
+import { showError, showSuccess } from "@/lib/toast";
 
 export default function AddBlog() {
   const router = useRouter();
@@ -21,6 +22,7 @@ export default function AddBlog() {
     e.preventDefault();
     try {
       await createBlog(form);
+      showSuccess("Blog created successfully!");
       router.push("/dashboard");
 
       setForm({
@@ -30,7 +32,7 @@ export default function AddBlog() {
         categoryId: "",
       });
     } catch (err) {
-      console.log("ERROR HANDLE SUBMIT CREATE BLOG", err);
+      showError(err);
     }
   }
 
@@ -40,7 +42,7 @@ export default function AddBlog() {
         const data = await getCategories();
         setCategories(data);
       } catch (err) {
-        console.log("ERROR FETCH CATEGORIES", err);
+        showError(err);
       }
     }
 

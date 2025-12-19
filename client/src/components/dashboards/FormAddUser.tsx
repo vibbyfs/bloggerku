@@ -5,6 +5,7 @@ import Button from "../commons/Button";
 import { FormEvent, useState } from "react";
 import { addUser } from "@/app/services/user";
 import { useRouter } from "next/navigation";
+import { showError, showSuccess } from "@/lib/toast";
 
 export default function FormAddUser() {
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function FormAddUser() {
     e.preventDefault();
     try {
       await addUser(form);
+      showSuccess("User added successfully!");
 
       setForm({
         username: "",
@@ -31,7 +33,7 @@ export default function FormAddUser() {
 
       router.push("/dashboard");
     } catch (err) {
-      console.log("ERROR HANDLE SUBMIT ADD USER", err);
+      showError(err);
     }
   }
 

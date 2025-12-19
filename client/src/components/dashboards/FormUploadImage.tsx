@@ -6,6 +6,7 @@ import Button from "../commons/Button";
 import { uploadImage } from "@/app/services/blog";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { showError, showSuccess } from "@/lib/toast";
 
 export default function FormUploadImage() {
   const { id } = useParams();
@@ -21,12 +22,10 @@ export default function FormUploadImage() {
     try {
       if (!file) return;
       await uploadImage(id as string, file);
-
+      showSuccess("Image uploaded successfully!");
       router.push("/dashboard");
     } catch (err) {
-      const anyErr = err as any;
-      console.log("ERROR UPLOAD IMAGE", anyErr);
-      console.log("SERVER RESPONSE", anyErr?.response?.data);
+      showError(err);
     }
   }
 

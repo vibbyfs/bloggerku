@@ -9,6 +9,7 @@ import {
 import TableCategories from "@/components/dashboards/TableCategories";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { showError, showSuccess } from "@/lib/toast";
 
 export default function Categories() {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function Categories() {
         const data = await getCategories();
         setCategories(data);
       } catch (err) {
-        console.log("ERROR FETCH CATEGORIES", err);
+        showError(err);
       }
     }
 
@@ -32,13 +33,14 @@ export default function Categories() {
   async function handleSubmit(id: number | string) {
     try {
       await deleteCategory(id);
+      showSuccess("Category deleted successfully!");
 
       const remainingCategory = categories.filter((c) => c.id !== id);
       setCategories(remainingCategory);
 
       router.push("/dashboard/categories");
     } catch (err) {
-      console.log("ERROR HANDLE DELETE CATEGORY", err);
+      showError(err);
     }
   }
 

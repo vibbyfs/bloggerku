@@ -6,6 +6,7 @@ import { BlogType, deleteBlog, getBlog } from "../services/blog";
 import { getSavedToken, setAuthToken } from "../services/auth";
 import { CategoriesType, getCategories } from "../services/categories";
 import { useParams } from "next/navigation";
+import { showError, showSuccess } from "@/lib/toast";
 
 export default function Dashboard() {
   const { id } = useParams();
@@ -21,7 +22,7 @@ export default function Dashboard() {
         const data = await getBlog();
         setBlog(data);
       } catch (err) {
-        console.log("ERROR FETCH BLOG", err);
+        showError(err);
       }
     }
 
@@ -30,7 +31,7 @@ export default function Dashboard() {
         const data = await getCategories();
         setCategories(data);
       } catch (err) {
-        console.log("ERROR FETCH CATEGORIES", err);
+        showError(err);
       }
     }
 
@@ -41,12 +42,13 @@ export default function Dashboard() {
   async function handleDeleteBlog(id: string | number) {
     try {
       await deleteBlog(id as string);
+      showSuccess("Blog deleted successfully!");
 
       const remainingBlog = blogs.filter((blog) => blog.id !== id);
 
       setBlog(remainingBlog);
     } catch (err) {
-      console.log("ERROR HANDLE DELETE", err);
+      showError(err);
     }
   }
 

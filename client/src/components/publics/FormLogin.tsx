@@ -5,6 +5,7 @@ import Button from "../commons/Button";
 import { FormEvent, useState } from "react";
 import { loginUser, saveToken, setAuthToken } from "../../app/services/auth";
 import { useRouter } from "next/navigation";
+import { showError, showSuccess } from "@/lib/toast";
 
 export default function FormLogin() {
   const router = useRouter();
@@ -17,9 +18,10 @@ export default function FormLogin() {
       const data = await loginUser({ email, password });
       saveToken(data.accessToken);
       setAuthToken(data.accessToken);
+      showSuccess("Login successful!");
       router.push("/dashboard");
     } catch (err) {
-      console.log("ERROR HANDLE SUBMIT LOGIN", err);
+      showError(err);
     }
   }
 
