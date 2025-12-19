@@ -4,10 +4,10 @@ services:
   server:
     build: ./server
     ports:
-      - "3000:3000"
+      - "80:80"
     environment:
       - NODE_ENV=production
-      - PORT=3000
+      - PORT=80
       - JWT_SECRET=${JWT_SECRET}
       - CLOUDINARY_URL=${CLOUDINARY_URL}
       - DATABASE_URL=${DATABASE_URL}
