@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  server:
+    build: ./server
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET}
+      - CLOUDINARY_URL=${CLOUDINARY_URL}
+      - DATABASE_URL=${DATABASE_URL}
+    volumes:
+      - ./server:/app
+      - /app/node_modules
