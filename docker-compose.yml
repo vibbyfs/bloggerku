@@ -1,33 +1,57 @@
-services:
-  server:
-    build: ./server
-    ports:
-      - "80:80"
-    environment:
-      - NODE_ENV=production
-      - PORT=80
-      - JWT_SECRET=${JWT_SECRET}
-      - CLOUDINARY_URL=${CLOUDINARY_URL}
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/BLOGGERKU
-    depends_on:
-      db:
-        condition: service_healthy
-    restart: unless-stopped
+version: "3.8"
 
-  db:
-    image: postgres:13
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: bloggerku-postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: BLOGGERKU
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=BLOGGERKU
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d BLOGGERKU"]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
-    restart: unless-stopped
+
+  server:
+    build: ./server
+    container_name: bloggerku-server
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET:-your-super-secret-jwt-key-here}
+      - CLOUDINARY_URL=${CLOUDINARY_URL}
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=BLOGGERKU
+      - DB_PORT=5432
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: sh -c "npm run migrate || true && npm start"
+
+  client:
+    build: ./client
+    container_name: bloggerku-client
+    ports:
+      - "80:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://localhost:3000
+    # volumes removed for production - code is baked into image
+    depends_on:
+      - server
 
 volumes:
   postgres_data:

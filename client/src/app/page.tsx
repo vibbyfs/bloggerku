@@ -86,7 +86,14 @@ export default function Dashboard() {
               ))}
             </div>
           )}
+          {!loadingBlogs && blogs.length === 0 && (
+            <div className="text-center py-12 text-gray-500">
+              <p className="text-lg font-medium">No posts found</p>
+              <p className="text-sm mt-1">Blog not found.</p>
+            </div>
+          )}
           {!loadingBlogs &&
+            blogs.length > 0 &&
             blogs.map((blog) => {
               const categoryName =
                 categories.find((c) => c.id === Number(blog.categoryId))

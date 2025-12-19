@@ -9,9 +9,12 @@ const options: ToastOptions = {
   pauseOnHover: true,
 };
 
-export const showSuccess = (message: string) => toast.success(message, options);
+export const showSuccess = (message: string, toastId?: string) => {
+  toast.dismiss();
+  toast.success(message, { ...options, toastId });
+};
 
-export const showError = (error: unknown) => {
+export const showError = (error: unknown, toastId?: string) => {
   let message = "Something went wrong";
 
   if (error instanceof AxiosError) {
@@ -20,5 +23,6 @@ export const showError = (error: unknown) => {
     message = error.message;
   }
 
-  toast.error(message, options);
+  toast.dismiss();
+  toast.error(message, { ...options, toastId });
 };

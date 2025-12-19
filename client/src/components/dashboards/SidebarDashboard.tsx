@@ -1,6 +1,7 @@
 "use client";
 
 import { logout } from "@/app/services/auth";
+import { showSuccess } from "@/lib/toast";
 import { AlbumIcon, LogOut, StickyNoteIcon, Users } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -64,9 +65,10 @@ export default function SidebarDashboard({ onNavigate }: Props) {
         </Link>
 
         <button
-          className={`${baseItem} w-full text-left hover:bg-white/10`}
+          className={`${baseItem} w-full text-left hover:bg-white/10 cursor-pointer`}
           onClick={() => {
             logout();
+            showSuccess("Logout successful!");
             if (onNavigate) onNavigate();
             router.push("/login");
           }}
