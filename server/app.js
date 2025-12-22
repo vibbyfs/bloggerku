@@ -18,7 +18,15 @@ const accessStaff = require('./middleware/accessStaff')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use(cors())
+
+// CORS configuration for Vercel frontend
+const corsOptions = {
+    origin: process.env.CORS_ORIGIN || '*',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}
+app.use(cors(corsOptions))
 
 //USERS ENDPOINTS
 app.post('/login', UserController.login)

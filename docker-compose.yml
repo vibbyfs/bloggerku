@@ -4,6 +4,7 @@ services:
   postgres:
     image: postgres:16-alpine
     container_name: bloggerku-postgres
+    restart: unless-stopped
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -21,37 +22,24 @@ services:
   server:
     build: ./server
     container_name: bloggerku-server
+    restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
       - PORT=3000
-      - JWT_SECRET=${JWT_SECRET:-your-super-secret-jwt-key-here}
+      - JWT_SECRET=${JWT_SECRET}
       - CLOUDINARY_URL=${CLOUDINARY_URL}
+      - CORS_ORIGIN=${CORS_ORIGIN:-*}
       - DB_HOST=postgres
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_NAME=BLOGGERKU
       - DB_PORT=5432
-    volumes:
-      - ./server:/app
-      - /app/node_modules
     depends_on:
       postgres:
         condition: service_healthy
     command: sh -c "npm run migrate || true && npm start"
-
-  client:
-    build: ./client
-    container_name: bloggerku-client
-    ports:
-      - "80:3000"
-    environment:
-      - NODE_ENV=production
-      - NEXT_PUBLIC_API_URL=http://localhost:3000
-    # volumes removed for production - code is baked into image
-    depends_on:
-      - server
 
 volumes:
   postgres_data:
