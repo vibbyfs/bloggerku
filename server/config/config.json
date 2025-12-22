@@ -3,7 +3,7 @@
     "username": "postgres",
     "password": "postgres",
     "database": "BLOGGERKU",
-    "host": "postgres",
+    "host": "localhost",
     "dialect": "postgres",
     "logging": false
   },
