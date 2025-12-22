@@ -30,7 +30,6 @@ services:
       - PORT=3000
       - JWT_SECRET=${JWT_SECRET}
       - CLOUDINARY_URL=${CLOUDINARY_URL}
-      - CORS_ORIGIN=${CORS_ORIGIN:-https://bloggerku.vercel.app}
       - DB_HOST=postgres
       - DB_USER=postgres
       - DB_PASSWORD=postgres

@@ -19,14 +19,7 @@ const accessStaff = require('./middleware/accessStaff')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-// CORS configuration for Vercel frontend
-const corsOptions = {
-    origin: process.env.CORS_ORIGIN || 'https://bloggerku.vercel.app',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With']
-}
-app.use(cors(corsOptions))
+app.use(cors())
 
 //USERS ENDPOINTS
 app.post('/login', UserController.login)
